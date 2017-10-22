@@ -20,7 +20,7 @@ public class InferCategoryController {
     @RequestMapping(value = "/api/inference",
             method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public ResultInferenceDTO getQuestions(@RequestBody InferenceParameterDTO inferenceParameterDTO) {
+    public ResultInferenceDTO inferCategory(@RequestBody InferenceParameterDTO inferenceParameterDTO) {
 
         return inferCategoryService.getCategory(inferenceParameterDTO);
 
