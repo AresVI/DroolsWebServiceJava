@@ -1,0 +1,231 @@
+package com.aresvi.inferircategoria_ws.rules
+
+import com.labausegtic.inference.service.dto.*;
+declare AlreadyProcessed
+end
+rule "Categoria A"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : InferenceParameterDTO(percentageNotRequired >= 0.85,
+					    		percentageLevel5 >= 0.8,
+					    		percentageLevel4 >= 0.75,
+					    		percentageLevel3 >= 0.7,
+					    		percentageLevel2 >= 0.65,
+					    		percentageLevel1 >= 0.6);
+    	
+    	r : ResultInferenceDTO();
+    then
+        //actions
+        r.setCategory("A");
+        System.out.println("Bodega Categoría: " + r.getCategory());
+        insert( new AlreadyProcessed() );
+
+end
+rule "Categoria B"
+
+salience 8
+
+    when
+    	not AlreadyProcessed()
+    	d : InferenceParameterDTO(percentageNotRequired >= 0.8,
+					    		percentageLevel5 >= 0.75,
+					    		percentageLevel4 >= 0.7, 
+					    		percentageLevel3 >= 0.65,
+					    		percentageLevel2 >= 0.6);
+    
+    	r : ResultInferenceDTO();
+    then
+        //actions
+        r.setCategory("B");
+        System.out.println("Bodega Categoría: " + r.getCategory());
+        insert( new AlreadyProcessed() );
+
+end
+rule "Categoria C"
+
+salience 6
+
+    when
+    	not AlreadyProcessed()
+    	d : InferenceParameterDTO(percentageNotRequired >= 0.75,
+					    		percentageLevel5 >= 0.7,
+					    		percentageLevel4 >= 0.65,
+					    		percentageLevel3 >= 0.6);
+    	
+    	r : ResultInferenceDTO();
+    then
+        //actions
+        r.setCategory("C");
+        System.out.println("Bodega Categoría: " + r.getCategory());
+		insert( new AlreadyProcessed() );
+
+end
+
+rule "Categoria D"
+
+salience 4
+
+    when
+    	not AlreadyProcessed()
+    	d : InferenceParameterDTO(percentageNotRequired >= 0.7,
+    							percentageLevel5 >= 0.65,
+    							percentageLevel4 >= 0.6);
+    	
+    	r : ResultInferenceDTO();
+    then
+        //actions
+        r.setCategory("D");
+       
+        System.out.println("Bodega Categoría: " + r.getCategory());
+        
+        insert( new AlreadyProcessed() );
+end
+rule "Categoria E"
+
+salience 2
+
+    when
+    	not AlreadyProcessed()
+        d : InferenceParameterDTO(percentageNotRequired >= 0.65,
+    							percentageLevel5 >= 0.6);
+    	
+    	r : ResultInferenceDTO();
+    then
+        //actions
+        r.setCategory("E");
+        System.out.println("Bodega Categoría: " + r.getCategory());
+        insert( new AlreadyProcessed() );
+
+end
+rule "Informatizacion 5"
+// Se registra la trazabilidad en forma manual, o registros esporádicos o no se registra
+no-loop true
+salience 12
+
+    when
+    	
+    	d : InferenceParameterDTO(levelComputerization == 5);
+    	
+    then
+        
+        
+        System.out.println("Nivel informatización: " + d.getLevelComputerization() );
+        System.out.println("Nuevos niveles de Atributos: \n" +
+        					"Porcentaje No Requerido: " + d.getPercentageNotRequired() + "\n" +
+        					"Porcentaje Nivel 5: " + d.getPercentageLevel5() + "\n" +
+        					"Porcentaje Nivel 4: " + d.getPercentageLevel4() + "\n" + 
+        					"Porcentaje Nivel 3: " + d.getPercentageLevel3() + "\n" +
+        					"Porcentaje Nivel 2: " + d.getPercentageLevel2() + "\n" +
+        					"Porcentaje Nivel 1: " + d.getPercentageLevel1() );
+        					
+end
+rule "Informatizacion 4"
+// Sistema semi-automatizado (excel u otros) que lleve la trazabilidad de la bodega 
+no-loop true
+salience 12
+
+    when
+    	
+    	d : InferenceParameterDTO(levelComputerization == 4);
+    	
+    then
+        d.setPercentageNotRequired(d.getPercentageNotRequired() + 0.05);
+        d.setPercentageLevel5(d.getPercentageLevel5() + 0.05);
+        d.setPercentageLevel4(d.getPercentageLevel4() + 0.05);
+        d.setPercentageLevel3(d.getPercentageLevel3() + 0.05);
+        d.setPercentageLevel2(d.getPercentageLevel2() + 0.05);
+        d.setPercentageLevel1(d.getPercentageLevel1() + 0.05);
+        update(d);
+        System.out.println("Nivel informatización: " + d.getLevelComputerization() );
+        System.out.println("Nuevos niveles de Atributos: \n" +
+        					"Porcentaje No Requerido: " + d.getPercentageNotRequired() + "\n" +
+        					"Porcentaje Nivel 5: " + d.getPercentageLevel5() + "\n" +
+        					"Porcentaje Nivel 4: " + d.getPercentageLevel4() + "\n" + 
+        					"Porcentaje Nivel 3: " + d.getPercentageLevel3() + "\n" +
+        					"Porcentaje Nivel 2: " + d.getPercentageLevel2() + "\n" +
+        					"Porcentaje Nivel 1: " + d.getPercentageLevel1() );
+        					
+end
+rule "Informatizacion 3"
+// Sistema de trazabilidad automatizado no integrado al resto de los sistemas de la bodega con persistencia de datos igual o menor a 3 años
+no-loop true
+salience 12
+
+    when
+    	
+    	d : InferenceParameterDTO(levelComputerization == 3);
+    	
+    then
+        d.setPercentageNotRequired(d.getPercentageNotRequired() + 0.1);
+        d.setPercentageLevel5(d.getPercentageLevel5() + 0.1);
+        d.setPercentageLevel4(d.getPercentageLevel4() + 0.1);
+        d.setPercentageLevel3(d.getPercentageLevel3() + 0.1);
+        d.setPercentageLevel2(d.getPercentageLevel2() + 0.1);
+        d.setPercentageLevel1(d.getPercentageLevel1() + 0.1);
+        update(d);
+        System.out.println("Nivel informatización: " + d.getLevelComputerization() );
+        System.out.println("Nuevos niveles de Atributos: \n" +
+        					"Porcentaje No Requerido: " + d.getPercentageNotRequired() + "\n" +
+        					"Porcentaje Nivel 5: " + d.getPercentageLevel5() + "\n" +
+        					"Porcentaje Nivel 4: " + d.getPercentageLevel4() + "\n" + 
+        					"Porcentaje Nivel 3: " + d.getPercentageLevel3() + "\n" +
+        					"Porcentaje Nivel 2: " + d.getPercentageLevel2() + "\n" +
+        					"Porcentaje Nivel 1: " + d.getPercentageLevel1() );
+        					
+end
+rule "Informatizacion 2"
+// Sistema de trazabilidad automatizado no integrado al resto de los sistemas de la bodega con persistencia de datos igual o mayor a 3 años
+no-loop true
+salience 12
+
+    when
+    	
+    	d : InferenceParameterDTO(levelComputerization == 2);
+    	
+    then
+        d.setPercentageNotRequired(d.getPercentageNotRequired() + 0.15);
+        d.setPercentageLevel5(d.getPercentageLevel5() + 0.15);
+        d.setPercentageLevel4(d.getPercentageLevel4() + 0.15);
+        d.setPercentageLevel3(d.getPercentageLevel3() + 0.15);
+        d.setPercentageLevel2(d.getPercentageLevel2() + 0.15);
+        d.setPercentageLevel1(d.getPercentageLevel1() + 0.15);
+        update(d);
+        System.out.println("Nivel informatización: " + d.getLevelComputerization() );
+        System.out.println("Nuevos niveles de Atributos: \n" +
+        					"Porcentaje No Requerido: " + d.getPercentageNotRequired() + "\n" +
+        					"Porcentaje Nivel 5: " + d.getPercentageLevel5() + "\n" +
+        					"Porcentaje Nivel 4: " + d.getPercentageLevel4() + "\n" + 
+        					"Porcentaje Nivel 3: " + d.getPercentageLevel3() + "\n" +
+        					"Porcentaje Nivel 2: " + d.getPercentageLevel2() + "\n" +
+        					"Porcentaje Nivel 1: " + d.getPercentageLevel1() );
+        					
+end
+
+rule "Informatizacion 1"
+//Sistema de trazabilidad automatizado e integrado al resto de los sistemas de la bodega
+no-loop true
+salience 12
+
+    when	
+    	d : InferenceParameterDTO(levelComputerization == 1);   	
+    	
+    then
+        d.setPercentageNotRequired(d.getPercentageNotRequired() + 0.2);
+        d.setPercentageLevel5(d.getPercentageLevel5() + 0.2);
+        d.setPercentageLevel4(d.getPercentageLevel4() + 0.2);
+        d.setPercentageLevel3(d.getPercentageLevel3() + 0.2);
+        d.setPercentageLevel2(d.getPercentageLevel2() + 0.2);
+        d.setPercentageLevel1(d.getPercentageLevel1() + 0.2);
+        update(d);
+        System.out.println("Nivel informatización: " + d.getLevelComputerization() );
+        System.out.println("Nuevos niveles de Atributos: \n" +
+        					"Porcentaje No Requerido: " + d.getPercentageNotRequired() + "\n" +
+        					"Porcentaje Nivel 5: " + d.getPercentageLevel5() + "\n" +
+        					"Porcentaje Nivel 4: " + d.getPercentageLevel4() + "\n" + 
+        					"Porcentaje Nivel 3: " + d.getPercentageLevel3() + "\n" +
+        					"Porcentaje Nivel 2: " + d.getPercentageLevel2() + "\n" +
+        					"Porcentaje Nivel 1: " + d.getPercentageLevel1() );
+end

@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.aresvi</groupId>
-  <artifactId>inferircategoria-ws</artifactId>
+  <artifactId>infercategory-ws</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>inferir-ws</name>
+  <name>InferCategory-ws</name>
   <url>http://maven.apache.org</url>
   
   <parent>
@@ -53,7 +53,7 @@
                 <directory>src/main/resources</directory>
                 <includes>
                     <include>META-INF/kmodule.xml</include>
-                    <include>rules/ReglasInferencia.drl</include>
+                    <include>rules/InferCategorySession.drl</include>
                 </includes>
                 <targetPath>.</targetPath>
             </resource>
