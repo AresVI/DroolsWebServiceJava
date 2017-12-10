@@ -4,6 +4,7 @@
 
     <kbase name="InferCategorySessionKbase" packages="rules">
     	<ksession name="InferCategorySession" />
+    	<ksession name="RecommendationNextLevelSession" />
     </kbase>
 
 </kmodule>

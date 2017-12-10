@@ -1,0 +1,630 @@
+package com.aresvi.inferircategoria_ws.rules
+
+import com.labausegtic.inference.service.dto.*;
+import java.util.List;
+
+declare AlreadyProcessed
+end
+
+rule "With Out Recommendation"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "A",
+                                        percentageNotRequired == 1,
+                                        percentageLevel5 == 1,
+                                        percentageLevel4 == 1,
+                                        percentageLevel3 == 1,
+                                        percentageLevel2 == 1,
+                                        percentageLevel1 == 1);
+    	
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(null);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category A - Recommendation LNR"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "A",
+                                        ((percentageNotRequired - 0.85) * 100) < 15);
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(0L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category A - Recommendation L5"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "A",
+                                        ((percentageLevel5 - 0.8) * 100) < 20);
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(5L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category A - Recommendation L4"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "A",
+                                        ((percentageLevel4 - 0.75) * 100) < 25);
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(4L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category A - Recommendation L3"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "A",
+                                        ((percentageLevel3 - 0.7) * 100) < 30);
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(3L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category A - Recommendation L2"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "A",
+                                        ((percentageLevel2 - 0.65) * 100) < 35);
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(2L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category A - Recommendation L1"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "A");
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(1L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category B - Recommendation LNR"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "B",
+                                        dnr : (percentageNotRequired - 0.85),
+                                        dl5 : (percentageLevel5 - 0.8),
+                                        dl4 : (percentageLevel4 - 0.75),
+                                        dl3 : (percentageLevel3 - 0.7),
+                                        dl2 : (percentageLevel2 - 0.65),
+                                        dl1 : (percentageLevel1 - 0.6),
+                                        dnr < dl5,
+                                        dnr < dl4,
+                                        dnr < dl3,
+                                        dnr < dl2,
+                                        dnr < dl1
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(0L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category B - Recommendation L5"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "B",
+                                        dnr : (percentageNotRequired - 0.85),
+                                        dl5 : (percentageLevel5 - 0.8),
+                                        dl4 : (percentageLevel4 - 0.75),
+                                        dl3 : (percentageLevel3 - 0.7),
+                                        dl2 : (percentageLevel2 - 0.65),
+                                        dl1 : (percentageLevel1 - 0.6),
+                                        dl5 < dnr,
+                                        dl5 < dl4,
+                                        dl5 < dl3,
+                                        dl5 < dl2,
+                                        dl5 < dl1
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(5L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category B - Recommendation L4"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "B",
+                                        dnr : (percentageNotRequired - 0.85),
+                                        dl5 : (percentageLevel5 - 0.8),
+                                        dl4 : (percentageLevel4 - 0.75),
+                                        dl3 : (percentageLevel3 - 0.7),
+                                        dl2 : (percentageLevel2 - 0.65),
+                                        dl1 : (percentageLevel1 - 0.6),
+                                        dl4 < dnr,
+                                        dl4 < dl5,
+                                        dl4 < dl3,
+                                        dl4 < dl2,
+                                        dl4 < dl1
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(4L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category B - Recommendation L3"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "B",
+                                        dnr : (percentageNotRequired - 0.85),
+                                        dl5 : (percentageLevel5 - 0.8),
+                                        dl4 : (percentageLevel4 - 0.75),
+                                        dl3 : (percentageLevel3 - 0.7),
+                                        dl2 : (percentageLevel2 - 0.65),
+                                        dl1 : (percentageLevel1 - 0.6),
+                                        dl3 < dnr,
+                                        dl3 < dl5,
+                                        dl3 < dl4,
+                                        dl3 < dl2,
+                                        dl3 < dl1
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(3L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category B - Recommendation L2"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "B",
+                                        dnr : (percentageNotRequired - 0.85),
+                                        dl5 : (percentageLevel5 - 0.8),
+                                        dl4 : (percentageLevel4 - 0.75),
+                                        dl3 : (percentageLevel3 - 0.7),
+                                        dl2 : (percentageLevel2 - 0.65),
+                                        dl1 : (percentageLevel1 - 0.6),
+                                        dl2 < dnr,
+                                        dl2 < dl5,
+                                        dl2 < dl4,
+                                        dl2 < dl3,
+                                        dl2 < dl1
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(2L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category B - Recommendation L1"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "B",
+                                        dnr : (percentageNotRequired - 0.85),
+                                        dl5 : (percentageLevel5 - 0.8),
+                                        dl4 : (percentageLevel4 - 0.75),
+                                        dl3 : (percentageLevel3 - 0.7),
+                                        dl2 : (percentageLevel2 - 0.65),
+                                        dl1 : (percentageLevel1 - 0.6),
+                                        dl1 < dnr,
+                                        dl1 < dl5,
+                                        dl1 < dl4,
+                                        dl1 < dl3,
+                                        dl1 < dl2
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(1L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category C - Recommendation LNR"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "C",
+                                        dnr : (percentageNotRequired - 0.8),
+                                        dl5 : (percentageLevel5 - 0.75),
+                                        dl4 : (percentageLevel4 - 0.7),
+                                        dl3 : (percentageLevel3 - 0.65),
+                                        dl2 : (percentageLevel2 - 0.6),
+                                        dnr < dl5,
+                                        dnr < dl4,
+                                        dnr < dl3,
+                                        dnr < dl2
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(0L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category C - Recommendation L5"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "C",
+                                        dnr : (percentageNotRequired - 0.8),
+                                        dl5 : (percentageLevel5 - 0.75),
+                                        dl4 : (percentageLevel4 - 0.7),
+                                        dl3 : (percentageLevel3 - 0.65),
+                                        dl2 : (percentageLevel2 - 0.6),
+                                        dl5 < dnr,
+                                        dl5 < dl4,
+                                        dl5 < dl3,
+                                        dl5 < dl2
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(5L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category C - Recommendation L4"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "C",
+                                        dnr : (percentageNotRequired - 0.8),
+                                        dl5 : (percentageLevel5 - 0.75),
+                                        dl4 : (percentageLevel4 - 0.7),
+                                        dl3 : (percentageLevel3 - 0.65),
+                                        dl2 : (percentageLevel2 - 0.6),
+                                        dl4 < dnr,
+                                        dl4 < dl5,
+                                        dl4 < dl3,
+                                        dl4 < dl2
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(4L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category C - Recommendation L3"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "C",
+                                        dnr : (percentageNotRequired - 0.8),
+                                        dl5 : (percentageLevel5 - 0.75),
+                                        dl4 : (percentageLevel4 - 0.7),
+                                        dl3 : (percentageLevel3 - 0.65),
+                                        dl2 : (percentageLevel2 - 0.6),
+                                        dl3 < dnr,
+                                        dl3 < dl5,
+                                        dl3 < dl4,
+                                        dl3 < dl2
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(3L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category C - Recommendation L2"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "C",
+                                        dnr : (percentageNotRequired - 0.8),
+                                        dl5 : (percentageLevel5 - 0.75),
+                                        dl4 : (percentageLevel4 - 0.7),
+                                        dl3 : (percentageLevel3 - 0.65),
+                                        dl2 : (percentageLevel2 - 0.6),
+                                        dl2 < dnr,
+                                        dl2 < dl5,
+                                        dl2 < dl4,
+                                        dl2 < dl3
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(2L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category D - Recommendation LNR"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "D",
+                                        dnr : (percentageNotRequired - 0.75),
+                                        dl5 : (percentageLevel5 - 0.7),
+                                        dl4 : (percentageLevel4 - 0.65),
+                                        dl3 : (percentageLevel3 - 0.6),
+                                        dnr < dl5,
+                                        dnr < dl4,
+                                        dnr < dl3
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(0L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category D - Recommendation L5"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "D",
+                                        dnr : (percentageNotRequired - 0.75),
+                                        dl5 : (percentageLevel5 - 0.7),
+                                        dl4 : (percentageLevel4 - 0.65),
+                                        dl3 : (percentageLevel3 - 0.6),
+                                        dl5 < dnr,
+                                        dl5 < dl4,
+                                        dl5 < dl3
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(5L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category D - Recommendation L4"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "D",
+                                        dnr : (percentageNotRequired - 0.75),
+                                        dl5 : (percentageLevel5 - 0.7),
+                                        dl4 : (percentageLevel4 - 0.65),
+                                        dl3 : (percentageLevel3 - 0.6),
+                                        dl4 < dnr,
+                                        dl4 < dl5,
+                                        dl4 < dl3
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(4L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category D - Recommendation L3"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "D",
+                                        dnr : (percentageNotRequired - 0.75),
+                                        dl5 : (percentageLevel5 - 0.7),
+                                        dl4 : (percentageLevel4 - 0.65),
+                                        dl3 : (percentageLevel3 - 0.6),
+                                        dl3 < dnr,
+                                        dl3 < dl5,
+                                        dl3 < dl4
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(3L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category E - Recommendation LNR"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "E",
+                                        dnr : (percentageNotRequired - 0.7),
+                                        dl5 : (percentageLevel5 - 0.65),
+                                        dl4 : (percentageLevel4 - 0.6),
+                                        dnr < dl5,
+                                        dnr < dl4
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(0L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category E - Recommendation L5"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "E",
+                                        dnr : (percentageNotRequired - 0.7),
+                                        dl5 : (percentageLevel5 - 0.65),
+                                        dl4 : (percentageLevel4 - 0.6),
+                                        dl5 < dnr,
+                                        dl5 < dl4
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(5L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "Category E - Recommendation L4"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "E",
+                                        dnr : (percentageNotRequired - 0.7),
+                                        dl5 : (percentageLevel5 - 0.65),
+                                        dl4 : (percentageLevel4 - 0.6),
+                                        dl4 < dnr,
+                                        dl4 < dl5
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(4L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "WithOutCategory - Recommendation LNR"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "",
+                                        dnr : (percentageNotRequired - 0.7),
+                                        dl5 : (percentageLevel5 - 0.65),
+                                        dnr < dl5
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(0L);
+        insert( new AlreadyProcessed() );
+
+end
+
+rule "WithOutCategory - Recommendation L5"
+
+salience 10
+
+    when
+    	not AlreadyProcessed();
+    	d : RecommendationParameterDTO( category == "",
+                                        dnr : (percentageNotRequired - 0.65),
+                                        dl5 : (percentageLevel5 - 0.6),
+                                        dl5 < dnr
+                                        );
+
+    	r : ResultRecommendationNextLevelDTO();
+    then
+        //actions
+        r.setLevel(5L);
+        insert( new AlreadyProcessed() );
+
+end

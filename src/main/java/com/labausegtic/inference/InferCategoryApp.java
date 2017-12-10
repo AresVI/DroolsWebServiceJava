@@ -23,7 +23,7 @@ public class InferCategoryApp {
 
         ApplicationContext ctx = SpringApplication.run(InferCategoryApp.class, args);
 
-        System.getProperties().put("server.port", 8080);
+        System.getProperties().put("server.port", 5000);
 
     }
 
