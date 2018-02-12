@@ -1,0 +1,7 @@
+version: '2'
+services:
+    aresvi-drools:
+            image: aresvi/drools:latest
+            container_name: drools
+            ports:
+                - 7000:8080

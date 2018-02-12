@@ -1,6 +1,6 @@
 package com.labausegtic.inference.service.dto;
 
-public class RecommendationParameterDTO {
+public class RecommendationParameterNextLevelDTO {
 
     private String category;
     private double percentageNotRequired;
@@ -10,10 +10,10 @@ public class RecommendationParameterDTO {
     private double percentageLevel4;
     private double percentageLevel5;
 
-    public RecommendationParameterDTO() {
+    public RecommendationParameterNextLevelDTO() {
     }
 
-    public RecommendationParameterDTO(String category, double percentageNotRequired, double percentageLevel1, double percentageLevel2, double percentageLevel3, double percentageLevel4, double percentageLevel5) {
+    public RecommendationParameterNextLevelDTO(String category, double percentageNotRequired, double percentageLevel1, double percentageLevel2, double percentageLevel3, double percentageLevel4, double percentageLevel5) {
         this.category = category;
         this.percentageNotRequired = percentageNotRequired;
         this.percentageLevel1 = percentageLevel1;

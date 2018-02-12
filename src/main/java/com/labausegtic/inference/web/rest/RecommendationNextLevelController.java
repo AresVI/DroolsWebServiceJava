@@ -1,7 +1,7 @@
 package com.labausegtic.inference.web.rest;
 
 import com.labausegtic.inference.service.RecommendationNextLevelService;
-import com.labausegtic.inference.service.dto.RecommendationParameterDTO;
+import com.labausegtic.inference.service.dto.RecommendationParameterNextLevelDTO;
 import com.labausegtic.inference.service.dto.ResultRecommendationNextLevelDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +20,8 @@ public class RecommendationNextLevelController {
     @RequestMapping(value = "/api/next-level",
             method = RequestMethod.POST, produces = "application/json")
     @ResponseBody
-    public ResultRecommendationNextLevelDTO inferCategory(@RequestBody RecommendationParameterDTO recommendationParameterDTO) {
-        return recommendationNextLevelService.getRecommendation(recommendationParameterDTO);
+    public ResultRecommendationNextLevelDTO inferCategory(@RequestBody RecommendationParameterNextLevelDTO RecommendationParameterNextLevelDTO) {
+        return recommendationNextLevelService.getRecommendation(RecommendationParameterNextLevelDTO);
 
     }
 

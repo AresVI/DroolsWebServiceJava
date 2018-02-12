@@ -12,7 +12,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "A",
+    	d : RecommendationParameterNextLevelDTO( category == "A",
                                         percentageNotRequired == 1,
                                         percentageLevel5 == 1,
                                         percentageLevel4 == 1,
@@ -34,7 +34,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "A",
+    	d : RecommendationParameterNextLevelDTO( category == "A",
                                         ((percentageNotRequired - 0.85) * 100) < 15);
 
     	r : ResultRecommendationNextLevelDTO();
@@ -51,7 +51,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "A",
+    	d : RecommendationParameterNextLevelDTO( category == "A",
                                         ((percentageLevel5 - 0.8) * 100) < 20);
 
     	r : ResultRecommendationNextLevelDTO();
@@ -68,7 +68,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "A",
+    	d : RecommendationParameterNextLevelDTO( category == "A",
                                         ((percentageLevel4 - 0.75) * 100) < 25);
 
     	r : ResultRecommendationNextLevelDTO();
@@ -85,7 +85,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "A",
+    	d : RecommendationParameterNextLevelDTO( category == "A",
                                         ((percentageLevel3 - 0.7) * 100) < 30);
 
     	r : ResultRecommendationNextLevelDTO();
@@ -102,7 +102,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "A",
+    	d : RecommendationParameterNextLevelDTO( category == "A",
                                         ((percentageLevel2 - 0.65) * 100) < 35);
 
     	r : ResultRecommendationNextLevelDTO();
@@ -119,7 +119,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "A");
+    	d : RecommendationParameterNextLevelDTO( category == "A");
 
     	r : ResultRecommendationNextLevelDTO();
     then
@@ -135,7 +135,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "B",
+    	d : RecommendationParameterNextLevelDTO( category == "B",
                                         dnr : (percentageNotRequired - 0.85),
                                         dl5 : (percentageLevel5 - 0.8),
                                         dl4 : (percentageLevel4 - 0.75),
@@ -163,7 +163,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "B",
+    	d : RecommendationParameterNextLevelDTO( category == "B",
                                         dnr : (percentageNotRequired - 0.85),
                                         dl5 : (percentageLevel5 - 0.8),
                                         dl4 : (percentageLevel4 - 0.75),
@@ -191,7 +191,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "B",
+    	d : RecommendationParameterNextLevelDTO( category == "B",
                                         dnr : (percentageNotRequired - 0.85),
                                         dl5 : (percentageLevel5 - 0.8),
                                         dl4 : (percentageLevel4 - 0.75),
@@ -219,7 +219,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "B",
+    	d : RecommendationParameterNextLevelDTO( category == "B",
                                         dnr : (percentageNotRequired - 0.85),
                                         dl5 : (percentageLevel5 - 0.8),
                                         dl4 : (percentageLevel4 - 0.75),
@@ -247,7 +247,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "B",
+    	d : RecommendationParameterNextLevelDTO( category == "B",
                                         dnr : (percentageNotRequired - 0.85),
                                         dl5 : (percentageLevel5 - 0.8),
                                         dl4 : (percentageLevel4 - 0.75),
@@ -275,7 +275,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "B",
+    	d : RecommendationParameterNextLevelDTO( category == "B",
                                         dnr : (percentageNotRequired - 0.85),
                                         dl5 : (percentageLevel5 - 0.8),
                                         dl4 : (percentageLevel4 - 0.75),
@@ -303,7 +303,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "C",
+    	d : RecommendationParameterNextLevelDTO( category == "C",
                                         dnr : (percentageNotRequired - 0.8),
                                         dl5 : (percentageLevel5 - 0.75),
                                         dl4 : (percentageLevel4 - 0.7),
@@ -329,7 +329,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "C",
+    	d : RecommendationParameterNextLevelDTO( category == "C",
                                         dnr : (percentageNotRequired - 0.8),
                                         dl5 : (percentageLevel5 - 0.75),
                                         dl4 : (percentageLevel4 - 0.7),
@@ -355,7 +355,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "C",
+    	d : RecommendationParameterNextLevelDTO( category == "C",
                                         dnr : (percentageNotRequired - 0.8),
                                         dl5 : (percentageLevel5 - 0.75),
                                         dl4 : (percentageLevel4 - 0.7),
@@ -381,7 +381,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "C",
+    	d : RecommendationParameterNextLevelDTO( category == "C",
                                         dnr : (percentageNotRequired - 0.8),
                                         dl5 : (percentageLevel5 - 0.75),
                                         dl4 : (percentageLevel4 - 0.7),
@@ -407,7 +407,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "C",
+    	d : RecommendationParameterNextLevelDTO( category == "C",
                                         dnr : (percentageNotRequired - 0.8),
                                         dl5 : (percentageLevel5 - 0.75),
                                         dl4 : (percentageLevel4 - 0.7),
@@ -433,7 +433,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "D",
+    	d : RecommendationParameterNextLevelDTO( category == "D",
                                         dnr : (percentageNotRequired - 0.75),
                                         dl5 : (percentageLevel5 - 0.7),
                                         dl4 : (percentageLevel4 - 0.65),
@@ -457,7 +457,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "D",
+    	d : RecommendationParameterNextLevelDTO( category == "D",
                                         dnr : (percentageNotRequired - 0.75),
                                         dl5 : (percentageLevel5 - 0.7),
                                         dl4 : (percentageLevel4 - 0.65),
@@ -481,7 +481,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "D",
+    	d : RecommendationParameterNextLevelDTO( category == "D",
                                         dnr : (percentageNotRequired - 0.75),
                                         dl5 : (percentageLevel5 - 0.7),
                                         dl4 : (percentageLevel4 - 0.65),
@@ -505,7 +505,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "D",
+    	d : RecommendationParameterNextLevelDTO( category == "D",
                                         dnr : (percentageNotRequired - 0.75),
                                         dl5 : (percentageLevel5 - 0.7),
                                         dl4 : (percentageLevel4 - 0.65),
@@ -529,7 +529,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "E",
+    	d : RecommendationParameterNextLevelDTO( category == "E",
                                         dnr : (percentageNotRequired - 0.7),
                                         dl5 : (percentageLevel5 - 0.65),
                                         dl4 : (percentageLevel4 - 0.6),
@@ -551,7 +551,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "E",
+    	d : RecommendationParameterNextLevelDTO( category == "E",
                                         dnr : (percentageNotRequired - 0.7),
                                         dl5 : (percentageLevel5 - 0.65),
                                         dl4 : (percentageLevel4 - 0.6),
@@ -573,7 +573,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "E",
+    	d : RecommendationParameterNextLevelDTO( category == "E",
                                         dnr : (percentageNotRequired - 0.7),
                                         dl5 : (percentageLevel5 - 0.65),
                                         dl4 : (percentageLevel4 - 0.6),
@@ -595,7 +595,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "",
+    	d : RecommendationParameterNextLevelDTO( category == "",
                                         dnr : (percentageNotRequired - 0.7),
                                         dl5 : (percentageLevel5 - 0.65),
                                         dnr < dl5
@@ -615,7 +615,7 @@ salience 10
 
     when
     	not AlreadyProcessed();
-    	d : RecommendationParameterDTO( category == "",
+    	d : RecommendationParameterNextLevelDTO( category == "",
                                         dnr : (percentageNotRequired - 0.65),
                                         dl5 : (percentageLevel5 - 0.6),
                                         dl5 < dnr

@@ -1,6 +1,6 @@
 package com.labausegtic.inference.service;
 
-import com.labausegtic.inference.service.dto.RecommendationParameterDTO;
+import com.labausegtic.inference.service.dto.RecommendationParameterNextLevelDTO;
 import com.labausegtic.inference.service.dto.ResultRecommendationNextLevelDTO;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
@@ -8,9 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class RecommendationNextLevelService {
@@ -26,13 +23,13 @@ public class RecommendationNextLevelService {
     }
 
     
-    public ResultRecommendationNextLevelDTO getRecommendation(RecommendationParameterDTO recommendationParameterDTO) {
+    public ResultRecommendationNextLevelDTO getRecommendation(RecommendationParameterNextLevelDTO RecommendationParameterNextLevelDTO) {
 
         KieSession kieSession = kieContainer.newKieSession("RecommendationNextLevelSession");
 
         ResultRecommendationNextLevelDTO resultRecommendationNextLevelDTO = new ResultRecommendationNextLevelDTO();
 
-        kieSession.insert(recommendationParameterDTO);
+        kieSession.insert(RecommendationParameterNextLevelDTO);
 
         kieSession.insert(resultRecommendationNextLevelDTO);
 
